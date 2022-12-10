@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_scope :user do
+    # Redirects signing out users back to sign-in
+    get 'users', to: 'devise/sessions#new'
+  end
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  get 'home', to: 'home#index'
   # Defines the root path route ("/")
-  # root "articles#index"
+  root 'home#index'
 end

@@ -20,9 +20,9 @@
   .btn-primary:focus {
     @apply outline-none ring-primary;
   }
-  .btn-secondary {
-    @apply bg-secondary text-white hover:bg-gray-700 focus:ring-secondary focus:ring-opacity-50 active:bg-secondary-press border border-secondary
-  }
+  /*.btn-secondary {*/
+  /*  @apply bg-secondary text-white hover:bg-gray-700 focus:ring-secondary focus:ring-opacity-50 active:bg-secondary-press border border-secondary*/
+  /*}*/
   .btn-tertiary {
     @apply bg-none border border-primary hover:bg-gray-400 hover:dark:bg-gray-800 dark:hover:text-based  hover:bg-opacity-25 text-primary dark:text-primary-hover focus:ring-primary focus:ring-opacity-50
   }

@@ -1,4 +1,7 @@
 <div class="flex space-x-3 items-center">
+  <%= link_to profile_path(current_user.id), class: 'icon' do %>
+    <%= render 'shared/svgs/user', size: 28 %>
+  <% end %>
   <%= render 'shared/theme_toggle_btn' %>
 
   <div class="lg:hidden justify-self-end">

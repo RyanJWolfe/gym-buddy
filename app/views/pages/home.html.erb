@@ -3,6 +3,17 @@
 
   <% if current_user %>
     <%= current_user.email %>
+
+    <p>People I'm following</p>
+    <% current_user.followees.each do |u| %>
+      <%= link_to u.email, profile_path(u.id) %>
+    <% end %>
+
+    <p>People following me</p>
+    <% current_user.followers.each do |u| %>
+      <%= link_to u.email, profile_path(u.id) %>
+    <% end %>
+
     <%= link_to 'Edit Account', edit_user_registration_path %>
     <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
   <% else %>

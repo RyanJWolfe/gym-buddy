@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'p/:id', to: 'profile#show'
+  get 'p/:id', to: 'profile#show', as: 'profile'
 
   post 'profile/follow', to: 'profile#follow'
   delete 'profile/unfollow', to: 'profile#unfollow'

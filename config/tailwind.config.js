@@ -31,7 +31,13 @@ module.exports = {
       backgroundColor: {
         base: 'rgb(var(--color-bg) / <alpha-value>)',
         nav: 'rgb(var(--color-bg-nav) / <alpha-value>)',
-      }
+      },
+      gradientColorStops: {
+        base: {
+          hue: 'rgb(var(--color-bg) / <alpha-value>)',
+          surface: 'rgb(var(--color-bg-surface) / <alpha-value>)',
+        },
+      },
     },
   },
   plugins: [

@@ -6,6 +6,12 @@ class ProfileController < ApplicationController
 
   def follow
     Relationship.create_or_find_by(follower_id: current_user.id, followee_id: @user.id)
+
+    # respond_to do |format|
+    #   format.turbo_stream do
+    #
+    #   end
+    # end
   end
 
   def unfollow

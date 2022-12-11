@@ -22,7 +22,7 @@ export default class extends Controller {
     //   this.navbarTarget.classList.add('top-0')
     // }
 
-    if (scrollTop > 125) {
+    if (scrollTop > 50) {
       this.show()
     } else {
       this.hide()

@@ -1,8 +1,9 @@
-class CreateExercisesRoutines < ActiveRecord::Migration[7.0]
+class CreateRoutineExercises < ActiveRecord::Migration[7.0]
   def change
-    create_table :exercises_routines do |t|
+    create_table :routine_exercises do |t|
       t.references :exercise, null: false, foreign_key: true
       t.references :routine, null: false, foreign_key: true
+      t.integer :order
 
       t.timestamps
     end

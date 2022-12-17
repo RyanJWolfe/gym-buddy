@@ -20,20 +20,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_17_190512) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "exercises_routines", force: :cascade do |t|
-    t.bigint "exercise_id", null: false
-    t.bigint "routine_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exercise_id"], name: "index_exercises_routines_on_exercise_id"
-    t.index ["routine_id"], name: "index_exercises_routines_on_routine_id"
-  end
-
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "routine_exercises", force: :cascade do |t|
+    t.bigint "exercise_id", null: false
+    t.bigint "routine_id", null: false
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_routine_exercises_on_exercise_id"
+    t.index ["routine_id"], name: "index_routine_exercises_on_routine_id"
   end
 
   create_table "routines", force: :cascade do |t|
@@ -63,28 +64,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_17_190512) do
 
   create_table "workout_sets", force: :cascade do |t|
     t.bigint "workout_id", null: false
-    t.bigint "exercises_routines_id", null: false
+    t.bigint "routine_exercise_id", null: false
     t.integer "weight"
     t.integer "reps"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exercises_routines_id"], name: "index_workout_sets_on_exercises_routines_id"
+    t.index ["routine_exercise_id"], name: "index_workout_sets_on_routine_exercise_id"
     t.index ["workout_id"], name: "index_workout_sets_on_workout_id"
   end
 
   create_table "workouts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "routine_id", null: false
+    t.bigint "routine_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["routine_id"], name: "index_workouts_on_routine_id"
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
-  add_foreign_key "exercises_routines", "exercises"
-  add_foreign_key "exercises_routines", "routines"
+  add_foreign_key "routine_exercises", "exercises"
+  add_foreign_key "routine_exercises", "routines"
   add_foreign_key "routines", "users"
-  add_foreign_key "workout_sets", "exercises_routines", column: "exercises_routines_id"
+  add_foreign_key "workout_sets", "routine_exercises"
   add_foreign_key "workout_sets", "workouts"
   add_foreign_key "workouts", "routines"
   add_foreign_key "workouts", "users"

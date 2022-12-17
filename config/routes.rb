@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :exercises
   get 'p/:id', to: 'profile#show', as: 'profile'
 
   post 'profile/follow', to: 'profile#follow'

@@ -19,4 +19,6 @@ class User < ApplicationRecord
            dependent: :destroy
 
   has_many :followers, through: :following_users, dependent: :destroy
+
+  has_many :routines, dependent: :destroy
 end

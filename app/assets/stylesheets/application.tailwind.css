@@ -27,7 +27,7 @@
     @apply bg-none border border-primary hover:bg-gray-400 hover:dark:bg-gray-800 dark:hover:text-based  hover:bg-opacity-25 text-primary dark:text-primary-hover focus:ring-primary focus:ring-opacity-50
   }
   .link {
-    @apply hover-underline
+    @apply hover-underline text-sm sm:text-base
   }
   .link-primary {
     @apply after:bg-primary text-primary
@@ -64,6 +64,18 @@
 
   .input-field.is-invalid {
     @apply border-red-500
+  }
+  .flash {
+    @apply w-screen py-2 -mx-5 text-sm sm:text-base text-white text-center font-semibold
+  }
+  .success {
+    @apply bg-green-500
+  }
+  .notice {
+    @apply bg-blue-500
+  }
+  .alert {
+    @apply bg-red-500
   }
 }
 

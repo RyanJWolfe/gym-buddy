@@ -1,4 +1,4 @@
-<div class="container mx-auto space-y-8 w-full mt-8">
+<div class="container mx-auto space-y-8 w-full mt-8 sm:mt-12">
   <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-based text-center">
     Create Account
   </h2>
@@ -8,9 +8,17 @@
     <div class="space-y-4 max-w-xl mx-auto">
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="field">
+        <% invalid = resource.errors.include?(:username) %>
+        <%= f.text_field :username,
+                         autocomplete: "username",
+                         placeholder: :username,
+                         autofocus: true,
+                         class: "input-field #{'is-invalid' if invalid}" %>
+      </div>
+
+      <div class="field">
         <% invalid = resource.errors.include?(:email) %>
         <%= f.email_field :email,
-                          autofocus: true,
                           autocomplete: "email",
                           placeholder: :email,
                           class: "input-field #{'is-invalid' if invalid}"%>

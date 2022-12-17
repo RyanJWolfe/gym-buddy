@@ -13,14 +13,16 @@
     <%= favicon_link_tag 'icons/wolf.ico' %>
   </head>
 
-  <body class="bg-base text-based flex flex-col justify-between min-h-screen">
-    <div>
-      <%= render 'layouts/header/header' %>
-      <%= render 'layouts/alerts' %>
-      <main class="container mx-auto mt-20 lg:mt-28 px-5 flex">
-        <%= yield %>
-      </main>
+  <body class="bg-base text-based">
+    <div class="flex flex-col justify-between min-h-screen">
+      <div>
+        <%= render 'layouts/header/header' %>
+        <main class="container mx-auto px-5">
+          <%= render 'layouts/alerts' %>
+          <%= yield %>
+        </main>
+      </div>
+      <%= render 'layouts/footer/footer' %>
     </div>
-    <%= render 'layouts/footer/footer' %>
   </body>
 </html>

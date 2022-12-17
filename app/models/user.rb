@@ -21,4 +21,5 @@ class User < ApplicationRecord
   has_many :followers, through: :following_users, dependent: :destroy
 
   has_many :routines, dependent: :destroy
+  has_many :workouts, dependent: :destroy
 end

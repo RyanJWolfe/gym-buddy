@@ -15,7 +15,6 @@ class RoutinesController < ApplicationController
   def new
     @routine = Routine.new
     @routine.routine_exercises.build
-    @routine.exercises.build
   end
 
   # GET /routines/1/edit
@@ -26,8 +25,12 @@ class RoutinesController < ApplicationController
     @routine = Routine.new(routine_params)
 
     respond_to do |format|
-      if @routine.save
-        format.html { redirect_to routine_url(@routine), notice: 'Routine was successfully created.' }
+      if params[:add_exercise]
+        @routine.routine_exercises.build
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @routine.errors, status: :unprocessable_entity }
+      elsif @routine.save
+        format.html { redirect_to @routine, notice: 'Routine was successfully created.' }
         format.json { render :show, status: :created, location: @routine }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -68,6 +71,6 @@ class RoutinesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def routine_params
-    params.require(:routine).permit(:name, routine_exercises_attributes: [:order, { exercise_id: [] }])
+    params.require(:routine).permit(:name, routine_exercises_attributes: %i[id exercise_id _destroy order])
   end
 end

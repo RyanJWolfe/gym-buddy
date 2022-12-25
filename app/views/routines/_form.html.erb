@@ -16,7 +16,7 @@
     <%= form.text_field :name, class: "form-text-area max-w-lg" %>
   </div>
 
-  <div class="space-y-4">
+  <div class="space-y-4" data-controller="form">
     <!--# NOTE: this `id` will be the target of the turbo stream-->
     <%= tag.div id: :routine_exercises do %>
       <%= form.fields_for :routine_exercises do |f| %>

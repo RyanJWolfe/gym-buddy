@@ -4,6 +4,15 @@
 <div><%= user.followees.count %> following</div>
 
 <% if user == current_user %>
+  <p>People I'm following</p>
+  <% current_user.followees.each do |u| %>
+    <%= link_to u.email, profile_path(u.id) %>
+  <% end %>
+
+  <p>People following me</p>
+  <% current_user.followers.each do |u| %>
+    <%= link_to u.email, profile_path(u.id) %>
+  <% end %>
   <%= link_to 'Edit Profile', edit_user_registration_path %>
   <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: '' %>
 <% elsif current_user %>

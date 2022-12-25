@@ -13,7 +13,10 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/new
   def new
+    pp "params #{params[:routine_id]}"
     @workout = Workout.new
+    @workout.routine = Routine.find(params[:routine_id]) if params[:routine_id]
+    pp @workout
   end
 
   # GET /workouts/1/edit

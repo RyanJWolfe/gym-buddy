@@ -13,6 +13,7 @@ class RoutinesController < ApplicationController
 
   # GET /routines/new
   def new
+    session[:redirect_to_new_workout] = true if request.referrer == new_workout_url
     @routine = current_user.routines.new
     @routine.routine_exercises.build
   end
@@ -26,7 +27,8 @@ class RoutinesController < ApplicationController
 
     respond_to do |format|
       if @routine.save
-        format.html { redirect_to @routine, notice: 'Routine was successfully created.' }
+        redirect = session[:redirect_to_new_workout] ? new_workout_url(routine_id: @routine.id) : routine_url(@routine)
+        format.html { redirect_to redirect, notice: 'Routine was successfully created.' }
         format.json { render :show, status: :created, location: @routine }
       else
         format.html { render :new, status: :unprocessable_entity }

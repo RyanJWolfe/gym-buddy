@@ -19,14 +19,11 @@
   <div class="space-y-4">
     <!--# NOTE: this `id` will be the target of the turbo stream-->
     <%= tag.div id: :routine_exercises do %>
-      <%= form.fields_for :routine_exercises, autocomplete: :off do |f| %>
-
+      <%= form.fields_for :routine_exercises do |f| %>
         <%= render 'routines/routine_exercise_fields', f: %>
       <% end %>
     <% end %>
-<%#= pp form.inspect %>
     <%= link_to 'Add exercise', add_exercise_routines_path(routine_id: routine.id), data: { turbo_method: :post }, class: 'link link-blue' %>
-
   </div>
 
 

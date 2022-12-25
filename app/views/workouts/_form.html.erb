@@ -11,17 +11,19 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+  <% if current_user.routines.any? %>
+    <div class="field flex flex-col space-y-4">
+      <%= form.label 'Select a routine or create a new one: ' %>
+      <%= form.select :routine_id, options_from_collection_for_select(current_user.routines, :id, :name,
+        class: 'w-full bg-surface hover:bg-surface-accent border border-surface-accent
+                            rounded-full px-4 py-3 text-center cursor-pointer') %>
+      <div>
+        <%= link_to 'New Routine', new_routine_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  <% else %>
 
-  <div class="my-5">
-    <%= form.label :routine_id %>
-    <%= form.text_field :routine_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+  <% end %>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+  <%= form.submit class: "btn btn-primary mr-2" %>
 <% end %>

@@ -15,9 +15,12 @@ module.exports = {
       },
       colors: {
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
         muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
         'primary-hover': 'rgb(var(--color-primary-hover) / <alpha-value>)',
         'primary-press': 'rgb(var(--color-primary-press) / <alpha-value>)',
+        'secondary-hover': 'rgb(var(--color-secondary-hover) / <alpha-value>)',
+        'secondary-press': 'rgb(var(--color-secondary-press) / <alpha-value>)',
         'bg-base': 'rgb(var(--color-bg) / <alpha-value>)',
         'bg-nav': 'rgb(var(--color-bg-nav) / <alpha-value>)',
         surface: 'rgb(var(--color-bg-surface) / <alpha-value>)',

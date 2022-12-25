@@ -7,22 +7,20 @@
 
 @layer components {
   .btn {
-    @apply inline-block px-5 py-3 outline-none tracking-wider text-sm sm:text-base text-based font-bold rounded
+    @apply inline-block px-5 py-3 outline-none tracking-wider text-sm sm:text-base text-based font-medium rounded-lg shadow-lg cursor-pointer
   }
   .btn:focus {
-    @apply outline-none ring ring-offset-2
+    @apply outline-none ring
   }
   .btn-primary {
-    @apply bg-transparent text-based hover:bg-primary active:bg-primary-press hover:text-inverted
-    border border-black dark:border-white hover:border-primary hover:dark:border-primary shadow-lg
-    transition duration-300 ease-in-out cursor-pointer
+    @apply bg-primary hover:bg-primary-hover active:bg-primary-press text-inverted
   }
   .btn-primary:focus {
     @apply outline-none ring-primary;
   }
-  /*.btn-secondary {*/
-  /*  @apply bg-secondary text-white hover:bg-gray-700 focus:ring-secondary focus:ring-opacity-50 active:bg-secondary-press border border-secondary*/
-  /*}*/
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary-hover focus:ring-secondary active:bg-secondary-press border border-black
+  }
   .btn-tertiary {
     @apply bg-none border border-primary hover:bg-gray-400 hover:dark:bg-gray-800 dark:hover:text-based  hover:bg-opacity-25 text-primary dark:text-primary-hover focus:ring-primary focus:ring-opacity-50
   }
@@ -76,6 +74,9 @@
   }
   .alert {
     @apply bg-red-500
+  }
+  .contents {
+    @apply w-full h-full flex flex-col justify-center items-center space-y-4 md:space-y-8
   }
 }
 

@@ -12,18 +12,22 @@
   <% end %>
 
   <% if current_user.routines.any? %>
-    <div class="field flex flex-col space-y-4">
-      <%= form.label 'Select a routine or create a new one: ' %>
-      <%= form.select :routine_id, options_from_collection_for_select(current_user.routines, :id, :name,
-        class: 'w-full bg-surface hover:bg-surface-accent border border-surface-accent
-                            rounded-full px-4 py-3 text-center cursor-pointer') %>
-      <div>
-        <%= link_to 'New Routine', new_routine_path, class: 'btn btn-secondary' %>
+    <div class="flex flex-col space-y-4">
+      <%= form.label 'Select a routine: ', class: 'text-lg font-medium' %>
+      <div class="grid grid-cols-2 gap-x-6">
+        <%= form.select :routine_id, options_from_collection_for_select(current_user.routines, :id, :name),
+                        { include_blank: false }, {
+                        class: 'bg-surface hover:bg-surface-accent border border-surface-accent
+                              rounded-lg px-4 py-3 text-center cursor-pointer' } %>
+        <div>
+          <span class="mr-6">Or</span>
+          <%= link_to 'Create a new Routine', new_routine_path, class: 'btn btn-secondary' %>
+        </div>
       </div>
     </div>
   <% else %>
 
   <% end %>
 
-  <%= form.submit class: "btn btn-primary mr-2" %>
+  <%= form.submit 'Start Workout', class: "btn btn-primary mr-2" %>
 <% end %>

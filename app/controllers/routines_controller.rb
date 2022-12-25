@@ -13,7 +13,7 @@ class RoutinesController < ApplicationController
 
   # GET /routines/new
   def new
-    @routine = Routine.new
+    @routine = current_user.routines.new
     @routine.routine_exercises.build
   end
 
@@ -22,14 +22,10 @@ class RoutinesController < ApplicationController
 
   # POST /routines or /routines.json
   def create
-    @routine = Routine.new(routine_params)
+    @routine = current_user.routines.new(routine_params)
 
     respond_to do |format|
-      if params[:add_exercise]
-        @routine.routine_exercises.build
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @routine.errors, status: :unprocessable_entity }
-      elsif @routine.save
+      if @routine.save
         format.html { redirect_to @routine, notice: 'Routine was successfully created.' }
         format.json { render :show, status: :created, location: @routine }
       else
@@ -37,6 +33,24 @@ class RoutinesController < ApplicationController
         format.json { render json: @routine.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def add_exercise
+    routine = Routine.new
+    # routine.routine_exercises.build
+    helpers.fields model: routine do |f|
+      f.fields_for :routine_exercises, RoutineExercise.new, child_index: Time.now.to_f do |ff|
+        render turbo_stream: turbo_stream.append(
+          'routine_exercises',
+          partial: 'routines/routine_exercise_fields',
+          locals: { f: ff }
+        )
+      end
+    end
+  end
+
+  def remove_exercise
+    puts "remove exercise #{params}"
   end
 
   # PATCH/PUT /routines/1 or /routines/1.json
@@ -71,6 +85,6 @@ class RoutinesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def routine_params
-    params.require(:routine).permit(:name, routine_exercises_attributes: %i[id exercise_id _destroy order])
+    params.require(:routine).permit(:name, routine_exercises_attributes: {})
   end
 end

@@ -3,7 +3,10 @@
 Rails.application.routes.draw do
   resources :workout_sets
   resources :workouts
-  resources :routines
+  resources :routines do
+    post :add_exercise, on: :collection
+    delete :remove_exercise, on: :collection
+  end
   resources :exercises
   get 'p/:id', to: 'profile#show', as: 'profile'
 

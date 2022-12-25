@@ -17,16 +17,16 @@
   </div>
 
   <div class="space-y-4">
-    <%= form.fields_for :routine_exercises do |f| %>
-      <%#= render 'routine_exercise_fields', f: f %>
-      <div class="space-y-4">
-        <div class="text-lg font-medium"><%= f.object.id || "New exercise" %></div>
-        <%= f.select :exercise_id, Exercise.all.map { |i| [i.name, i.id] }, include_blank: "Select ingredient" %>
-        <%= f.hidden_field :order, value: routine.exercises.count + 1 %>
-        <%= f.check_box :_destroy, title: "Check to delete exercise" %>
-      </div>
+    <!--# NOTE: this `id` will be the target of the turbo stream-->
+    <%= tag.div id: :routine_exercises do %>
+      <%= form.fields_for :routine_exercises, autocomplete: :off do |f| %>
+
+        <%= render 'routines/routine_exercise_fields', f: %>
+      <% end %>
     <% end %>
-    <%= form.submit "Add exercise", name: :add_exercise, class: 'link link-blue' %>
+<%#= pp form.inspect %>
+    <%= link_to 'Add exercise', add_exercise_routines_path(routine_id: routine.id), data: { turbo_method: :post }, class: 'link link-blue' %>
+
   </div>
 
 

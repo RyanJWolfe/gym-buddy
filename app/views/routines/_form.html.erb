@@ -12,9 +12,23 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
+    <%= form.label :name, class: "text-lg font-medium" %>
     <%= form.text_field :name, class: "form-text-area max-w-lg" %>
   </div>
+
+  <div class="space-y-4">
+    <%= form.fields_for :routine_exercises do |f| %>
+      <%#= render 'routine_exercise_fields', f: f %>
+      <div class="space-y-4">
+        <div class="text-lg font-medium"><%= f.object.id || "New exercise" %></div>
+        <%= f.select :exercise_id, Exercise.all.map { |i| [i.name, i.id] }, include_blank: "Select ingredient" %>
+        <%= f.hidden_field :order, value: routine.exercises.count + 1 %>
+        <%= f.check_box :_destroy, title: "Check to delete exercise" %>
+      </div>
+    <% end %>
+    <%= form.submit "Add exercise", name: :add_exercise, class: 'link link-blue' %>
+  </div>
+
 
   <%= form.submit class: "btn btn-primary mr-2" %>
 <% end %>

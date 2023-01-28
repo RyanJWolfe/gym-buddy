@@ -1,0 +1,25 @@
+<div class="relative bg-surface p-6 rounded-lg border border-surface-alt max-w-sm shadow-md w-full">
+  <div class="flex justify-between items-baseline space-x-4">
+    <strong class="block font-bold text-xl"><%= routine.name %></strong>
+    <%= link_to render_username(routine.user), profile_path(routine.user_id), class: "link link-blue text-sm" %>
+  </div>
+
+  <hr class="my-3 border-surface-alt">
+
+  <ul class="list-[upper-roman] list-inside text-sm">
+    <% routine.exercises.each do |exercise| %>
+      <li><%= exercise.name %></li>
+    <% end %>
+  </ul>
+
+  <div class="absolute right-6 bottom-6">
+    <div class="flex space-x-6">
+      <%= link_to "View", routine, class: "link link-muted" %>
+      <% if current_user&.id == routine.user.id %>
+        <%= link_to edit_routine_path(routine), class: "text-muted" do %>
+          <%= render 'shared/svgs/edit', size: 20 %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

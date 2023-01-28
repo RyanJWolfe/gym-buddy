@@ -8,4 +8,8 @@ module ProfileHelper
   def dom_id_for_follower(follower)
     dom_id(follower)
   end
+
+  def render_username(user)
+    "@#{user.username}"
+  end
 end

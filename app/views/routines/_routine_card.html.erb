@@ -1,4 +1,4 @@
-<div class="relative bg-surface p-6 rounded-lg border border-surface-alt max-w-sm shadow-md w-full">
+<div class="relative bg-surface p-5 rounded-lg border border-surface-alt max-w-sm shadow-md w-full">
   <div class="flex justify-between items-baseline space-x-4">
     <strong class="block font-bold text-xl"><%= routine.name %></strong>
     <%= link_to render_username(routine.user), profile_path(routine.user_id), class: "link link-blue text-sm" %>
@@ -12,7 +12,7 @@
     <% end %>
   </ul>
 
-  <div class="absolute right-6 bottom-6">
+  <div class="absolute right-5 bottom-5">
     <div class="flex space-x-6">
       <%= link_to "View", routine, class: "link link-muted" %>
       <% if current_user&.id == routine.user.id %>
